@@ -1,0 +1,6 @@
+.profile__full-name {
+  margin: 0;
+  font-size: 42px;
+  line-height: calc(48 / 42);
+  font-weight: 400;
+}

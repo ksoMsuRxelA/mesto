@@ -1,0 +1,7 @@
+.profile__info {
+  min-width: 336px;
+  min-height: 73px;
+  position: relative;
+  margin: 0 auto 0 30px;
+  align-self: center;
+}
