@@ -8,3 +8,7 @@
   background-color: transparent;
   border: none;
 }
+
+.profile__add-button:hover {
+  cursor: pointer;
+}

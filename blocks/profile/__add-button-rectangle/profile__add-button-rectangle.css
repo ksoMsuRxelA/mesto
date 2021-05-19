@@ -8,4 +8,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  transition: opacity .2s ease-in-out;
+}
+
+.profile__add-button-rectangle:hover {
+  opacity: .6;
+  cursor: pointer;
 }
