@@ -4,3 +4,25 @@
   line-height: calc(48 / 42);
   font-weight: 400;
 }
+
+@media screen and (min-width: 320px) and (max-width: 767px) {
+  .profile__full-name {
+    max-width: 189px;
+    margin: 0 auto;
+    font-size: 27px;
+    line-height: calc(32.68 / 27);
+    font-weight: 400;
+    text-align: center;
+  }
+}
+
+
+
+/* @media screen and (max-width: 320px) {
+  .profile__full-name {
+    font-size: 27px;
+    line-height: calc(32.68 / 27);
+    font-weight: 400;
+    text-align: center;
+  }
+} */

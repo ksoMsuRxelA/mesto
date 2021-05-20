@@ -1,7 +1,6 @@
 .profile__add-button-rectangle {
-  max-width: 150px;
-  width: 17.045%;
-  height: 50px;
+  width: 146px;
+  height: 48px;
   align-self: center;
   border: 2px solid #fff;
   border-radius: 2px;
@@ -15,3 +14,19 @@
   opacity: .6;
   cursor: pointer;
 }
+
+@media screen and (min-width: 320px) and (max-width: 767px) {
+  .profile__add-button-rectangle {
+    width: 100%;
+    max-width: 282px;
+    margin: 28px 0 0 0;
+  }
+}
+
+/* @media screen and (max-width: 320px) {
+  .profile__add-button-rectangle {
+    width: 100%;
+    max-width: 282px;
+    margin: 28px 0 0 0;
+  }
+} */
