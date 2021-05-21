@@ -1,4 +1,5 @@
 .popup__full-name {
+  font-family: inherit;
   width: 100%;
   padding: 0 0 18px 0;
   border: none;
