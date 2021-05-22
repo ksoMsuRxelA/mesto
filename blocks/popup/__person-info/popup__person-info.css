@@ -1,7 +1,7 @@
 .popup__person-info {
   width: calc(100% - 36px * 2);
   margin: 40px auto 0 auto;
-  padding: 0;
+  padding: 10px 0 0 0;
   border: none;
   display: flex;
   flex-direction: column;
@@ -11,5 +11,6 @@
   .popup__person-info {
     width: calc(100% - 22px * 2);
     margin: 75px auto 0 auto;
+    padding: 2px 0 0 0;
   }
 }
