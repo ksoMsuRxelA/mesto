@@ -1,8 +1,12 @@
 .element {
-  display: flex;
-  flex-direction: column;
+  width: 282px;
+  height: 361px;
+  display: grid;
+  grid-template-columns: 1fr 64px;
+  grid-template-rows: 1fr 79px;
+  grid-template-areas: 
+    'image image'
+    'title-group like-group';
   border-radius: 10px;
   background-color: #fff;
-  color: #000;
-  position: relative;
 }
