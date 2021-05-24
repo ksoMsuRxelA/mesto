@@ -1,8 +1,0 @@
-.element__title-group {
-  width: 100%;
-  grid-area: title-group;
-  display: grid;
-  align-self: center;
-  box-sizing: border-box;
-  padding: 0 0 0 21px;
-}

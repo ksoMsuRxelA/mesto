@@ -5,7 +5,7 @@
   grid-template-rows: 1fr 79px;
   grid-template-areas: 
     'image image'
-    'title-group like-group';
+    'title like';
   border-radius: 10px;
   background-color: #fff;
 }
