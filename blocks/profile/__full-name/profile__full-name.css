@@ -1,34 +1,18 @@
 .profile__full-name {
-  grid-area: name;
   margin: 0;
   font-size: 42px;
-  line-height: 1.14;
+  line-height: 42px;
   font-weight: 500;
   text-overflow: ellipsis;
   white-space: nowrap;
-  overflow-x: hidden;
-  overflow-y: visible; /*по факту бесполезное свойство.*/
-  /* Здесь я попрошу минуточку внимания. Как Вы могли уже заметить
-  с данным элементом у меня возникли некоторые трудности, а именно происходит
-  обрезание текста по вертикальной оси. (Буква У сама на себя не похожа...) Я почитал статьи на эту тему в Сети и
-  нашел обьяснение: если у одного из свойств overflow стоит значение visible, то 
-  другое по умолчанию принимает значение auto. Данное поведение можно отнести к багам
-  CSS. Словом сделать невидимость вдоль одной оси и видимость вдоль другой никак пока не получается.
-  Люди из сети научились решать данную проблему через JavaScript.
-  Можно было бы поменть высоту грид-строки или высоту текста, но тогда получается 
-  несоответствие макету. Патовая ситуация.  
-  Вот ссылка с обсуждение проблемы:
-  https://htmlforum.io/topic/58460-overflow-y-visible-ne-rabotaet-esli-overflow-x-hidden/
-  Спасибо за внимание! */
+  overflow: hidden;
 }
 
 @media screen and (min-width: 320px) and (max-width: 767px) {
   .profile__full-name {
-    max-width: 189px;
-    margin: 0 auto;
-    font-size: 27px;
-    line-height: calc(32.68 / 27);
-    font-weight: 400;
+    width: 100%;
     text-align: center;
+    font-size: 27px;
+    line-height: 32.68px;
   }
 }

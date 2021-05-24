@@ -1,23 +1,12 @@
 .profile__info {
-  width: 336px;
   min-height: 73px;
-  display: grid;
-  grid-template-columns: 294px 1fr;
-  grid-template-rows: 39px 1fr;
-  grid-gap: 16px 18px;
-  grid-template-areas: 
-    'name edit-button'
-    'role .';
-  margin: 22px auto 25px 30px;
+  max-width: 294px;
 }
 
 @media screen and (min-width: 320px) and (max-width: 767px) {
   .profile__info {
-    display: block;
-    position: relative;
+    max-width: auto;
     width: 100%;
-    min-width: 282px;
-    min-height: 54px;
     margin: 26px 0 0 0;
   }
 }
