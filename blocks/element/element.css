@@ -1,6 +1,5 @@
 .element {
   width: 282px;
-  height: 361px;
   display: grid;
   grid-template-columns: 1fr 64px;
   grid-template-rows: 1fr 79px;
