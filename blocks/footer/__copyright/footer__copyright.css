@@ -3,6 +3,7 @@
   line-height: calc(21.78 / 18);
   font-weight: 400;
   color: #545454;
+  margin: 0;
 }
 
 @media screen and (max-width: 320px) {
