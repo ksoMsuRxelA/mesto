@@ -19,7 +19,6 @@ function takeInputsFromPage() {
 
 popupCloseButton.addEventListener('click', function() {
   popup.classList.remove('popup_opened');
-  takeInputsFromPage();
 })
 
 popupOpenButton.addEventListener('click', function() {
