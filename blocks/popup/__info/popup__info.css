@@ -1,4 +1,4 @@
-.popup__person-info {
+.popup__info {
   width: calc(100% - 36px * 2);
   margin: 37px auto 0 auto;
   padding: 0;
@@ -9,7 +9,7 @@
 }
 
 @media screen and (min-width: 320px) and (max-width: 767px) {
-  .popup__person-info {
+  .popup__info {
     width: calc(100% - 22px * 2);
     margin: 62px auto 0 auto;
     padding: 2px 0 0 0;

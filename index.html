@@ -58,11 +58,12 @@
   <footer class="footer page__footer">
     <p class="footer__copyright">&copy; 2021 Mesto Russia</p>
   </footer>
+
   <section class="popup">
     <div class="popup__container">
       <form class="popup__edit-form" name="personal_info">
         <h2 class="popup__title">Редактировать профиль</h2>
-        <fieldset class="popup__person-info">
+        <fieldset class="popup__info">
           <input type="text" placeholder="Ваше имя" class="popup__input" name="fullname">
           <input type="text" placeholder="Род вашей деятельности" class="popup__input" name="role">
           <button type="submit" aria-label="Кнопка Сохранить" class="popup__save-button">Сохранить</button>
@@ -71,6 +72,21 @@
       </form>
     </div>
   </section>
+
+  <section class="popup"> 
+    <div class="popup__container">
+      <form class="popup__edit-form" name="image_info">
+        <h2 class="popup__title">Новое место</h2>
+        <fieldset class="popup__info">
+          <input type="text" placeholder="Название" class="popup__input" name="name">
+          <input type="text" placeholder="Ссылка на картинку" class="popup__input" name="link">
+          <button type="submit" aria-label="Кнопка Сохранить" class="popup__save-button">Сохранить</button>
+        </fieldset>
+        <button type="button" aria-label="Закрыть всплывающее окно" class="popup__close-button"></button>
+      </form>
+    </div>
+  </section>
+
   <script src="./scripts/script.js"></script>
 </body>
 </html>
