@@ -22,44 +22,17 @@
       </div>
       <button type="button" aria-label="Открыть форму" class="profile__add-button"></button>
     </section>
-    <section class="elements content__elements">
-      <div class="element">
-        <img src="./images/element_yakutia.jpg" alt="Якутия" class="element__image">
-        <h2 class="element__title">Якутия</h2>
-        <button type="button" aria-label="Кнопка Нравится" class="element__like-button"></button>
-      </div>
-      <div class="element">
-        <img src="./images/element_moscow.jpg" alt="Москва" class="element__image">
-        <h2 class="element__title">Москва</h2>
-        <button type="button" aria-label="Кнопка Нравится" class="element__like-button"></button>
-      </div>
-      <div class="element">
-        <img src="./images/element_kazan.jpg" alt="Казань" class="element__image">
-        <h2 class="element__title">Казань</h2>
-        <button type="button" aria-label="Кнопка Нравится" class="element__like-button"></button>
-      </div>
-      <div class="element">
-        <img src="./images/element_peterburg.jpg" alt="Санкт-Петербург" class="element__image">
-        <h2 class="element__title">Санкт-Петербург</h2>
-        <button type="button" aria-label="Кнопка Нравится" class="element__like-button"></button>
-      </div>
-      <div class="element">
-        <img src="./images/element_volgograd.jpg" alt="Волгоград" class="element__image">
-        <h2 class="element__title">Волгоград</h2>
-        <button type="button" aria-label="Кнопка Нравится" class="element__like-button"></button>
-      </div>
-      <div class="element">
-        <img src="./images/element_samara.jpg" alt="Самара" class="element__image">
-        <h2 class="element__title">Самара</h2>
-        <button type="button" aria-label="Кнопка Нравится" class="element__like-button"></button>
-      </div>
+
+    <section class="elements content__elements">      
+      
     </section>
+
   </main>
   <footer class="footer page__footer">
     <p class="footer__copyright">&copy; 2021 Mesto Russia</p>
   </footer>
 
-  <section class="popup">
+  <section class="popup popup_type_edit">
     <div class="popup__container">
       <form class="popup__edit-form" name="personal_info">
         <h2 class="popup__title">Редактировать профиль</h2>
@@ -73,7 +46,7 @@
     </div>
   </section>
 
-  <section class="popup"> 
+  <section class="popup popup_type_new-card"> 
     <div class="popup__container">
       <form class="popup__edit-form" name="image_info">
         <h2 class="popup__title">Новое место</h2>
@@ -87,6 +60,14 @@
     </div>
   </section>
 
+  <template id="cardTemplate">
+    <div class="element">
+      <img src="" alt="" class="element__image">
+      <h2 class="element__title"></h2>
+      <button type="button" aria-label="Кнопка Нравится" class="element__like-button"></button>
+      <button type="button" aria-label="Кнопка удаления карточки" class="element__delete-button"></button>
+    </div>
+  </template>
   <script src="./scripts/script.js"></script>
 </body>
 </html>

@@ -1,54 +1,54 @@
-let page = document.querySelector('.page');
-let content = page.querySelector('.content');
-let elements = content.querySelector('.elements');
-let elementList = elements.querySelectorAll('.element');
+const page = document.querySelector('.page');
+const content = page.querySelector('.content');
 
-let popup = page.querySelectorAll('.popup');
-let popupContainerPerson = popup[0].querySelector('.popup__container');
-let popupEditFormPerson = popupContainerPerson.querySelector('.popup__edit-form');
-let popupCloseButtonPerson = popupEditFormPerson.querySelector('.popup__close-button');
+const elements = content.querySelector('.elements');
+const elementList = elements.querySelectorAll('.element');
 
-let profile = content.querySelector('.profile');
-let popupOpenButtonPerson = profile.querySelector('.profile__edit-button');
-let profileFullName = profile.querySelector('.profile__full-name'); //h1 tag
-let profileRole = profile.querySelector('.profile__role'); //p tag
-let popupPersonInfoInputs = popupEditFormPerson.querySelectorAll('.popup__input');
+const popupEdit = page.querySelector('.popup_type_edit');
+const popupContainerPerson = popupEdit.querySelector('.popup__container');
+const popupEditFormPerson = popupContainerPerson.querySelector('.popup__edit-form');
+const popupCloseButtonEdit = popupEditFormPerson.querySelector('.popup__close-button');
+const popupPersonInfoInputs = popupEditFormPerson.querySelectorAll('.popup__input');
+
+const popupAdd = page.querySelector('.popup_type_new-card');
+const popupEditFormAdd = popupAdd.querySelector('.popup__edit-form');
+const popupCloseButtonAdd = popupAdd.querySelector('.popup__close-button');
+const popupInfoInputsAdd = popupAdd.querySelectorAll('.popup__input');
+
+const profile = content.querySelector('.profile');
+const popupOpenButtonEdit = profile.querySelector('.profile__edit-button');
+const popupOpenButtonAdd = profile.querySelector('.profile__add-button');
+const profileFullName = profile.querySelector('.profile__full-name'); //h1 tag
+const profileRole = profile.querySelector('.profile__role'); //p tag
 
 function takeInputsFromPage() {
   popupPersonInfoInputs[0].value = profileFullName.textContent;
   popupPersonInfoInputs[1].value = profileRole.textContent;
 }
 
-function popupOpenClass(popupIndex) {
+function popupToggle(popup) {
   return function() {
-    popup[popupIndex].classList.add('popup_opened');
+    if(popup === popupEdit) {
+      takeInputsFromPage();
+    }
+    popup.classList.toggle('popup_opened');
   }
 }
 
-function popupCloseClass(popupIndex) {
-  return function() {
-    popup[popupIndex].classList.remove('popup_opened');
-  }
-}
+popupOpenButtonEdit.addEventListener('click', popupToggle(popupEdit));
+popupCloseButtonEdit.addEventListener('click', popupToggle(popupEdit));
 
-popupOpenButtonPerson.addEventListener('click', popupOpenClass(0));
-popupCloseButtonPerson.addEventListener('click', popupCloseClass(0));
+popupOpenButtonAdd.addEventListener('click', popupToggle(popupAdd));
+popupCloseButtonAdd.addEventListener('click', popupToggle(popupAdd));
 
-const popupOpenButtonAdd = profile.querySelector('.profile__add-button');
-const popupCloseButtonAdd = popup[1].querySelector('.popup__close-button');
-
-popupOpenButtonAdd.addEventListener('click', popupOpenClass(1));
-popupCloseButtonAdd.addEventListener('click', popupCloseClass(1));
-
-function formSubmitHandler (evt) {
+function formSubmitHandlerEdit (evt) {
   evt.preventDefault();
   profileFullName.textContent = popupPersonInfoInputs[0].value;
   profileRole.textContent = popupPersonInfoInputs[1].value;
-  popup.classList.remove('popup_opened');
+  popupEdit.classList.remove('popup_opened');
 }
 
-popupEditFormPerson.addEventListener('submit', formSubmitHandler);
-
+popupEditFormPerson.addEventListener('submit', formSubmitHandlerEdit);
 
 //Здесь начинается код нового спринта. 
 
@@ -81,13 +81,33 @@ const initialCards = [
   }
 ];
 
-/*Попробуем воспльзоваться новыми знаниями, а именно методом .children
-и методом .from глобального объекта Array*/
+function makeCard(title, link) {
+  const cardTemp = page.querySelector('#cardTemplate');
+  const cardTempContent = cardTemp.content;
+  const newCard = cardTempContent.cloneNode(true);
+  newCard.querySelector('.element__like-button').addEventListener('click', function(event) {
+    event.target.classList.toggle('element__like-button_active');
+  });
+  newCard.querySelector('.element__delete-button').addEventListener('click', function(event) {
+    const delParent = event.target.closest('.element');
+    delParent.remove();
+  });
 
-Array.from(elements.children).forEach((item, index) => {
-  const card = initialCards[index];
-  item.querySelector('.element__image').src = card.link;
-  item.querySelector('.element__title').textContent = card.name;
+  newCard.querySelector('.element__title').textContent = title;
+  newCard.querySelector('.element__image').src = link;
+
+  elements.prepend(newCard);
+}
+
+initialCards.forEach(item => {
+  makeCard(item.name, item.link);
 });
 
+function formSubmitHandlerAdd (evt) {
+  evt.preventDefault();
+  makeCard(popupInfoInputsAdd[0].value, popupInfoInputsAdd[1].value);
+  popupInfoInputsAdd.forEach(item => {item.value = ''}); //опустошаем поля ввода, чтобы пользователю не приходилось делать это самому
+  popupAdd.classList.remove('popup_opened');
+}
 
+popupEditFormAdd.addEventListener('submit', formSubmitHandlerAdd);
