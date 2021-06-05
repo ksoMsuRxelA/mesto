@@ -61,7 +61,7 @@ function formSubmitHandlerEdit (evt) {
   evt.preventDefault();
   profileFullName.textContent = popupPersonInfoName.value;
   profileRole.textContent = popupPersonInfoRole.value;
-  popupEdit.classList.remove('popup_opened');
+  closePopup(popupEdit)(); //просто напросто забыл про этот момент, извините :)
 }
 
 popupEditFormPerson.addEventListener('submit', formSubmitHandlerEdit);
