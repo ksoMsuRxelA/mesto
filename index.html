@@ -37,8 +37,10 @@
       <form class="popup__edit-form" name="personal_info">
         <h2 class="popup__title">Редактировать профиль</h2>
         <fieldset class="popup__info">
-          <input type="text" placeholder="Ваше имя" class="popup__input popup__input-name" name="fullname">
-          <input type="text" placeholder="Род вашей деятельности" class="popup__input popup__input-role" name="role">
+          <input id="name-input" type="text" placeholder="Ваше имя" class="popup__input popup__input-name" name="fullname" required minlength="2" maxlength="40">
+          <span class="popup__error-element name-input-error"></span>
+          <input id="role-input" type="text" placeholder="Род вашей деятельности" class="popup__input popup__input-role" name="role" required minlength="2" maxlength="200">
+          <span class="popup__error-element role-input-error"></span>
           <button type="submit" aria-label="Кнопка Сохранить" class="popup__save-button">Сохранить</button>
         </fieldset>
         <button type="button" aria-label="Закрыть всплывающее окно" class="popup__close-button"></button>
@@ -51,8 +53,10 @@
       <form class="popup__edit-form" name="image_info">
         <h2 class="popup__title">Новое место</h2>
         <fieldset class="popup__info">
-          <input type="text" placeholder="Название" class="popup__input popup__input-name" name="name">
-          <input type="url" placeholder="Ссылка на картинку" class="popup__input popup__input-link" name="link">
+          <input id="place-input" type="text" placeholder="Название" class="popup__input popup__input popup__input-name" name="name" required minlength="2" maxlength="30">
+          <span class="popup__error-element place-input-error"></span>
+          <input id="url-input" type="url" placeholder="Ссылка на картинку" class="popup__input popup__input popup__input-link" name="link" required>
+          <span class="popup__error-element url-input-error"></span>
           <button type="submit" aria-label="Кнопка Сохранить" class="popup__save-button">Сохранить</button>
         </fieldset>
         <button type="button" aria-label="Закрыть всплывающее окно" class="popup__close-button"></button>
@@ -77,5 +81,6 @@
     </div>
   </template>
   <script src="./scripts/script.js"></script>
+  <script src="./scripts/validate.js"></script>
 </body>
 </html>

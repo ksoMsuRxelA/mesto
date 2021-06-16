@@ -1,0 +1,7 @@
+.popup__error-element {
+  display: none;
+  font-size: 12px;
+  line-height: calc(14.52 / 12);
+  font-weight: 400;
+  color: red;
+}
