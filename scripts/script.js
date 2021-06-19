@@ -45,15 +45,24 @@ function openPopup(popup) {
 
 function closePopup(popup) {
   return function() {
+    if(popup === popupAdd) {
+      popupEditFormAdd.reset();
+    }
     popup.classList.remove('popup_opened');
   }
 }
 
 popupOpenButtonEdit.addEventListener('click', openPopup(popupEdit));
 popupCloseButtonEdit.addEventListener('click', closePopup(popupEdit));
+popupCloseButtonEdit.addEventListener('click', function(evt) {
+  clearForm(evt.target.closest('.popup__edit-form'));
+});
 
 popupOpenButtonAdd.addEventListener('click', openPopup(popupAdd));
 popupCloseButtonAdd.addEventListener('click', closePopup(popupAdd));
+popupCloseButtonAdd.addEventListener('click', function(evt) {
+  clearForm(evt.target.closest('.popup__edit-form'));
+});
 
 popupCloseButtonImage.addEventListener('click', closePopup(popupImage));
 
@@ -136,8 +145,7 @@ initialCards.forEach(item => {
 function formSubmitHandlerAdd (evt) {
   evt.preventDefault();
   addCard(elements, createCard(popupInfoInputName.value, popupInfoInputLink.value));
-  popupInfoInputName.value = '';
-  popupInfoInputLink.value = '';
+  popupEditFormAdd.reset();
   closePopup(popupAdd)();
 }
 
