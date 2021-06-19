@@ -13,12 +13,14 @@ const popupPersonInfoRole = popupEditFormPerson.querySelector('.popup__input-rol
 
 
 const popupAdd = page.querySelector('.popup_type_new-card');
+const popupContainerAdd = popupAdd.querySelector('.popup__container');
 const popupEditFormAdd = popupAdd.querySelector('.popup__edit-form');
 const popupCloseButtonAdd = popupAdd.querySelector('.popup__close-button');
 const popupInfoInputName = popupAdd.querySelector('.popup__input-name');
 const popupInfoInputLink = popupAdd.querySelector('.popup__input-link');
 
 const popupImage = page.querySelector('.popup_type_image');
+const popupImageContainer = popupImage.querySelector('.popup__container');
 const popupImg = popupImage.querySelector('.popup__image');
 const popupCaption = popupImage.querySelector('.popup__image-caption');
 const popupCloseButtonImage = popupImage.querySelector('.popup__close-button');
@@ -34,12 +36,28 @@ function takeInputsFromPage() {
   popupPersonInfoRole.value = profileRole.textContent;
 }
 
+function closeByEscape(evt) {
+  if(evt.key === 'Escape') {
+    const activePopup = document.querySelector('.popup_opened');
+    closePopup(activePopup)();
+  }
+}
+
+function closeByClickOnOverlay(evt) {
+  if(evt.target.classList.contains('popup')) {
+    const activePopup = document.querySelector('.popup_opened');
+    closePopup(activePopup)();
+  }
+}
+
 function openPopup(popup) {
   return function() {
     if(popup === popupEdit) {
       takeInputsFromPage();
     }
     popup.classList.add('popup_opened');
+    document.addEventListener('keydown', closeByEscape);
+    popup.addEventListener('click', closeByClickOnOverlay);
   }
 }
 
@@ -49,20 +67,19 @@ function closePopup(popup) {
       popupEditFormAdd.reset();
     }
     popup.classList.remove('popup_opened');
+    if(popup !== popupImage) {
+      clearForm(popup.querySelector('.popup__edit-form'));
+    }
+    document.removeEventListener('keydown', closeByEscape);
+    popup.removeEventListener('click', closeByClickOnOverlay);
   }
 }
 
 popupOpenButtonEdit.addEventListener('click', openPopup(popupEdit));
 popupCloseButtonEdit.addEventListener('click', closePopup(popupEdit));
-popupCloseButtonEdit.addEventListener('click', function(evt) {
-  clearForm(evt.target.closest('.popup__edit-form'));
-});
 
 popupOpenButtonAdd.addEventListener('click', openPopup(popupAdd));
 popupCloseButtonAdd.addEventListener('click', closePopup(popupAdd));
-popupCloseButtonAdd.addEventListener('click', function(evt) {
-  clearForm(evt.target.closest('.popup__edit-form'));
-});
 
 popupCloseButtonImage.addEventListener('click', closePopup(popupImage));
 
