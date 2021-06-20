@@ -34,7 +34,7 @@
 
   <section class="popup popup_type_edit">
     <div class="popup__container">
-      <form class="popup__edit-form popup__click-area" name="personal_info" novalidate>
+      <form class="popup__edit-form" name="personal_info" novalidate>
         <h2 class="popup__title">Редактировать профиль</h2>
         <fieldset class="popup__info">
           <input id="name-input" type="text" placeholder="Ваше имя" class="popup__input popup__input-name" name="fullname" required minlength="2" maxlength="40">
@@ -50,7 +50,7 @@
 
   <section class="popup popup_type_new-card"> 
     <div class="popup__container">
-      <form class="popup__edit-form popup__click-area" name="image_info" novalidate>
+      <form class="popup__edit-form" name="image_info" novalidate>
         <h2 class="popup__title">Новое место</h2>
         <fieldset class="popup__info">
           <input id="place-input" type="text" placeholder="Название" class="popup__input popup__input popup__input-name" name="name" required minlength="2" maxlength="30">
@@ -65,7 +65,7 @@
   </section>
 
   <section class="popup popup_type_image">
-    <figure class="popup__image-container popup__click-area">
+    <figure class="popup__image-container">
       <img src="#" alt="some" class="popup__image">
       <figcaption class="popup__image-caption"></figcaption>
       <button type="button" aria-label="Закрыть всплывающее окно" class="popup__close-button"></button>
