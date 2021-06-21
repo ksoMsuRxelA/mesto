@@ -36,42 +36,43 @@ function takeInputsFromPage() {
   popupPersonInfoRole.value = profileRole.textContent;
 }
 
+function closeActivePopup(activePopup) {
+  if(activePopup.classList.contains('popup_type_edit')) {
+    closeEditPopup();
+  } else if(activePopup.classList.contains('popup_type_new-card')) {
+    closeAddPopup();
+  } else {
+    closeImagePopup();
+  }
+}
+
 function closeByEscape(evt) {
   if(evt.key === 'Escape') {
     const activePopup = document.querySelector('.popup_opened');
-    closePopup(activePopup);
+    closeActivePopup(activePopup);
   }
 }
 
 function closeByClickOnOverlay(evt) {
   if(evt.target.classList.contains('popup')) {
     const activePopup = document.querySelector('.popup_opened');
-    closePopup(activePopup);
+    closeActivePopup(activePopup);
   }
 }
 
 function openPopup(popup) {
-  if(popup === popupEdit) {
-    takeInputsFromPage();
-  }
   popup.classList.add('popup_opened');
   document.addEventListener('keydown', closeByEscape);
   popup.addEventListener('click', closeByClickOnOverlay);
 }
 
 function closePopup(popup) {
-  if(popup === popupAdd) {
-    popupEditFormAdd.reset();
-  }
   popup.classList.remove('popup_opened');
-  if(popup !== popupImage) {
-    clearForm(popup.querySelector('.popup__edit-form'));
-  }
   document.removeEventListener('keydown', closeByEscape);
   popup.removeEventListener('click', closeByClickOnOverlay);
 }
 
-//если я Вас правильно понял, вы рекомендовали сделать следующее (см.ниже)//
+//кажется теперь я Вас правильно понял//
 
 function openEditPopup() {
   openPopup(popupEdit);
@@ -80,6 +81,7 @@ function openEditPopup() {
 
 function closeEditPopup() {
   closePopup(popupEdit);
+  clearForm(popupEdit.querySelector('.popup__edit-form'));
 }
 
 function openAddPopup() {
@@ -88,6 +90,8 @@ function openAddPopup() {
 
 function closeAddPopup() {
   closePopup(popupAdd);
+  clearForm(popupAdd.querySelector('.popup__edit-form'));
+  popupEditFormAdd.reset();
 }
 
 function openImagePopup() {
