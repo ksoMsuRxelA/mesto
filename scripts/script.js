@@ -1,3 +1,5 @@
+import FormValidator from './FormValidator.js';
+
 const page = document.querySelector('.page');
 const content = page.querySelector('.content');
 
@@ -30,6 +32,21 @@ const popupOpenButtonEdit = profile.querySelector('.profile__edit-button');
 const popupOpenButtonAdd = profile.querySelector('.profile__add-button');
 const profileFullName = profile.querySelector('.profile__full-name'); //h1 tag
 const profileRole = profile.querySelector('.profile__role'); //p tag
+
+const objSelectors = {
+  formSelector: '.popup__edit-form',
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.popup__save-button',
+  inactiveButtonClass: 'popup__save-button_disabled',
+  inputErrorClass: 'popup__input_type_error',
+  errorClass: 'popup__error-element_visible'
+};
+
+const EditFormValidate = new FormValidator(objSelectors, popupEditFormPerson);
+const AddFormValidate = new FormValidator(objSelectors, popupEditFormAdd);
+// debugger;
+EditFormValidate.enableValidation();
+AddFormValidate.enableValidation();
 
 function takeInputsFromPage() {
   popupPersonInfoName.value = profileFullName.textContent;
@@ -81,7 +98,7 @@ function openEditPopup() {
 
 function closeEditPopup() {
   closePopup(popupEdit);
-  clearForm(popupEdit.querySelector('.popup__edit-form'));
+  EditFormValidate.clearForm();
 }
 
 function openAddPopup() {
@@ -90,7 +107,7 @@ function openAddPopup() {
 
 function closeAddPopup() {
   closePopup(popupAdd);
-  clearForm(popupAdd.querySelector('.popup__edit-form'));
+  AddFormValidate.clearForm();
   popupEditFormAdd.reset();
 }
 
