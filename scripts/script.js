@@ -80,13 +80,13 @@ function closeByClickOnOverlay(evt) {
 function openPopup(popup) {
   popup.classList.add('popup_opened');
   document.addEventListener('keydown', closeByEscape);
-  popup.addEventListener('click', closeByClickOnOverlay);
+  popup.addEventListener('mousedown', closeByClickOnOverlay);
 }
 
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
   document.removeEventListener('keydown', closeByEscape);
-  popup.removeEventListener('click', closeByClickOnOverlay);
+  popup.removeEventListener('mousedown', closeByClickOnOverlay);
 }
 
 function openEditPopup() {
