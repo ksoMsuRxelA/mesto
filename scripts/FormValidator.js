@@ -5,10 +5,6 @@ class FormValidator {
   }
 
   enableValidation = () => {
-    this._formElement.addEventListener('submit', function(evt) {
-      evt.preventDefault();
-      evt.currentTarget.reset();
-    });
     this._setEventListeners();
   }
 
@@ -62,7 +58,7 @@ class FormValidator {
     this._errorElement.classList.remove(this._objSelectors['errorClass']);
   }
 
-  clearForm = () => {
+  clearForm = () => { //данный публичный метод необходим для очистки формы от элементов ошибок. Он вызывается каждый раз когда закрывается форма редактирования или добавления. Без нее, единожды появившиеся элементы ошибок остаются навсегда. 
     this._inputList.forEach((inputElement) => {
       this._hideInputError(inputElement);
     });

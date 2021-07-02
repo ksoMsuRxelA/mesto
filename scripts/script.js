@@ -1,4 +1,5 @@
 import FormValidator from './FormValidator.js';
+import Card from './Card.js';
 
 const page = document.querySelector('.page');
 const content = page.querySelector('.content');
@@ -44,7 +45,6 @@ const objSelectors = {
 
 const EditFormValidate = new FormValidator(objSelectors, popupEditFormPerson);
 const AddFormValidate = new FormValidator(objSelectors, popupEditFormAdd);
-// debugger;
 EditFormValidate.enableValidation();
 AddFormValidate.enableValidation();
 
@@ -89,8 +89,6 @@ function closePopup(popup) {
   popup.removeEventListener('click', closeByClickOnOverlay);
 }
 
-//кажется теперь я Вас правильно понял//
-
 function openEditPopup() {
   openPopup(popupEdit);
   takeInputsFromPage();
@@ -131,14 +129,10 @@ function formSubmitHandlerEdit (evt) {
   evt.preventDefault();
   profileFullName.textContent = popupPersonInfoName.value;
   profileRole.textContent = popupPersonInfoRole.value;
-  closePopup(popupEdit)(); //просто напросто забыл про этот момент, извините :)
+  closePopup(popupEdit);
 }
 
 popupEditFormPerson.addEventListener('submit', formSubmitHandlerEdit);
-
-//Здесь начинается код нового спринта. 
-
-/*Шесть карточек из коробки*/
 
 const initialCards = [
   {
@@ -167,47 +161,26 @@ const initialCards = [
   }
 ];
 
-const cardTemp = page.querySelector('#cardTemplate');
-const cardTempContent = cardTemp.content;
-
-function createCard(title, link) {
-  const newCard = cardTempContent.cloneNode(true);
-
-  newCard.querySelector('.element__like-button').addEventListener('click', function(event) {
-    event.target.classList.toggle('element__like-button_active');
-  });
-  newCard.querySelector('.element__delete-button').addEventListener('click', function(event) {
-    const delParent = event.target.closest('.element');
-    delParent.remove();
-  });
-  newCard.querySelector('.element__image').addEventListener('click', function(event) {
-    popupCaption.textContent = event.target.nextElementSibling.textContent;
-    popupImg.src = event.target.src;
-    popupImg.alt = event.target.nextElementSibling.textContent;
-    openImagePopup();
-  });
-
-  const newCardImg = newCard.querySelector('.element__image');
-  newCard.querySelector('.element__title').textContent = title;
-  newCardImg.src = link;
-  newCardImg.alt = title;
-  
-  return newCard;
-}
-
 function addCard(container, cardItem) {
   container.prepend(cardItem);
 }
 
 initialCards.forEach(item => {
-  addCard(elements, createCard(item.name, item.link));
+  const newCard = new Card(item, '#cardTemplate');
+  const newCardElement = newCard.generateCard();
+  addCard(elements, newCardElement);
 });
 
 function formSubmitHandlerAdd (evt) {
-  evt.preventDefault();
-  addCard(elements, createCard(popupInfoInputName.value, popupInfoInputLink.value));
+  evt.preventDefault(); 
+  const item = {name: popupInfoInputName.value, link: popupInfoInputLink.value};
+  const newCard = new Card(item, '#cardTemplate');
+  const newCardElement = newCard.generateCard();
+  addCard(elements, newCardElement);
   popupEditFormAdd.reset();
   closeAddPopup();
 }
 
 popupEditFormAdd.addEventListener('submit', formSubmitHandlerAdd);
+
+export default openImagePopup;
