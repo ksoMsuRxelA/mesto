@@ -129,7 +129,7 @@ function formSubmitHandlerEdit (evt) {
   evt.preventDefault();
   profileFullName.textContent = popupPersonInfoName.value;
   profileRole.textContent = popupPersonInfoRole.value;
-  closePopup(popupEdit);
+  closeEditPopup();
 }
 
 popupEditFormPerson.addEventListener('submit', formSubmitHandlerEdit);
