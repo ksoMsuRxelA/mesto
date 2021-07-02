@@ -43,10 +43,10 @@ const objSelectors = {
   errorClass: 'popup__error-element_visible'
 };
 
-const EditFormValidate = new FormValidator(objSelectors, popupEditFormPerson);
-const AddFormValidate = new FormValidator(objSelectors, popupEditFormAdd);
-EditFormValidate.enableValidation();
-AddFormValidate.enableValidation();
+const editFormValidate = new FormValidator(objSelectors, popupEditFormPerson);
+const addFormValidate = new FormValidator(objSelectors, popupEditFormAdd);
+editFormValidate.enableValidation();
+addFormValidate.enableValidation();
 
 function takeInputsFromPage() {
   popupPersonInfoName.value = profileFullName.textContent;
@@ -96,7 +96,7 @@ function openEditPopup() {
 
 function closeEditPopup() {
   closePopup(popupEdit);
-  EditFormValidate.clearForm();
+  editFormValidate.clearForm();
 }
 
 function openAddPopup() {
@@ -105,7 +105,7 @@ function openAddPopup() {
 
 function closeAddPopup() {
   closePopup(popupAdd);
-  AddFormValidate.clearForm();
+  addFormValidate.clearForm();
   popupEditFormAdd.reset();
 }
 

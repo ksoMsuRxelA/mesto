@@ -28,13 +28,21 @@ class FormValidator {
     }
   }
 
+  _disableSubmitButton = () => {
+    this._buttonElement.classList.add(this._objSelectors['inactiveButtonClass']);
+    this._buttonElement.setAttribute('disabled', true);
+  }
+
+  _ableSubmitButton = () => {
+    this._buttonElement.classList.remove(this._objSelectors['inactiveButtonClass']);
+    this._buttonElement.removeAttribute('disabled');
+  }
+
   _toggleButtonState = () => {
     if(this._hasInvalidInput()) {
-      this._buttonElement.classList.add(this._objSelectors['inactiveButtonClass']);
-      this._buttonElement.setAttribute('disabled', true);
+      this._disableSubmitButton();
     } else {
-      this._buttonElement.classList.remove(this._objSelectors['inactiveButtonClass']);
-      this._buttonElement.removeAttribute('disabled');
+      this._ableSubmitButton();
     }
   }
 
@@ -59,6 +67,7 @@ class FormValidator {
   }
 
   clearForm = () => { //данный публичный метод необходим для очистки формы от элементов ошибок. Он вызывается каждый раз когда закрывается форма редактирования или добавления. Без нее, единожды появившиеся элементы ошибок остаются навсегда. 
+    this._disableSubmitButton(); //спасибо что обнаружили этот БАГ, надеюсь такое исправление Вас удовлетворит :) Необязательные замечания я обязательно исправлю, так как эти замечания весьма конструктивны и за это Вам тоже большое спасибо! 
     this._inputList.forEach((inputElement) => {
       this._hideInputError(inputElement);
     });

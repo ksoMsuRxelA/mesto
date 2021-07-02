@@ -40,9 +40,9 @@ class Card {
   _onImg = (evt) => {
     const popupImg = document.querySelector('.popup_type_image');
     popupImg.querySelector('.popup__image-caption').textContent = evt.target.nextElementSibling.textContent;
-    const ImgElement = popupImg.querySelector('.popup__image');
-    ImgElement.src = evt.target.src;
-    ImgElement.alt = evt.target.nextElementSibling.textContent;
+    const imgElement = popupImg.querySelector('.popup__image');
+    imgElement.src = evt.target.src;
+    imgElement.alt = evt.target.nextElementSibling.textContent;
     openImagePopup(); //данная функция нужна для открытия попапа изображения. Можно было бы реализовать отдельный приватный метод для этого, но ввиду каскадной структуры данной функции (она вызвает OpenPopup, которая вешает слушателей с обработчиками closeByEscape & closeByClickOnOverlay и т.д.), данная идея не выглядит целесообразной. Гораздо проще и понятнее импортировать ее и основного файла с кодом. 
   }
 }
