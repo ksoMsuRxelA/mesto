@@ -1,9 +1,10 @@
 import openImagePopup from './script.js';
 
 class Card {
-  constructor(data, cardTemplateSelector) {
+  constructor(data, cardTemplateSelector, handleCardClick) {
     this._data = data;
     this._cardTemplateSelector = cardTemplateSelector;
+    this._handleCardClick = handleCardClick; //##
   }
 
   generateCard = () => {
@@ -25,7 +26,7 @@ class Card {
   _setEventListeners = () => {
     this._card.querySelector('.element__like-button').addEventListener('click', this._onLike);
     this._card.querySelector('.element__delete-button').addEventListener('click', this._onDelete);
-    this._card.querySelector('.element__image').addEventListener('click', this._onImg);
+    this._card.querySelector('.element__image').addEventListener('click', this._onImg); //##
   }
 
   _onLike = (evt) => {
