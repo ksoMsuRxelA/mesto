@@ -30,3 +30,44 @@ export const popupOpenButtonEdit = profile.querySelector('.profile__edit-button'
 export const popupOpenButtonAdd = profile.querySelector('.profile__add-button');
 export const profileFullName = profile.querySelector('.profile__full-name'); //h1 tag
 export const profileRole = profile.querySelector('.profile__role'); //p tag
+
+/********************************/
+export const nameSelector = '.profile__full-name';
+export const roleSelector = '.profile__role';
+export const editPopupSelector = '.popup_type_edit';
+
+export const objSelectors = {
+  formSelector: '.popup__edit-form',
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.popup__save-button',
+  inactiveButtonClass: 'popup__save-button_disabled',
+  inputErrorClass: 'popup__input_type_error',
+  errorClass: 'popup__error-element_visible'
+};
+
+const initialCards = [
+  {
+    name: 'Архыз',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+  },
+  {
+    name: 'Челябинская область',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+  },
+  {
+    name: 'Иваново',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+  },
+  {
+    name: 'Камчатка',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+  },
+  {
+    name: 'Холмогорский район',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+  },
+  {
+    name: 'Байкал',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+  }
+];

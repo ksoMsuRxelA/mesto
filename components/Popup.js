@@ -15,14 +15,14 @@ export default class Popup {
 
   setEventListeners() {
     this._element.querySelector('.popup__close-button').addEventListener('click', this.close);
-    document.addEventListener('keydown', this._handleEscClose);
-    this._element.addEventListener('mousedown', this._handleClickClose);
+    document.addEventListener('keydown', this._handleEscClose.bind(this));
+    this._element.addEventListener('mousedown', this._handleClickClose.bind(this));
   }
 
   _removeEventListeners() {
     this._element.querySelector('.popup__close-button').removeEventListener('click', this.close);
-    document.removeEventListener('keydown', this._handleEscClose);
-    this._element.removeEventListener('mousedown', this._handleClickClose);
+    document.removeEventListener('keydown', this._handleEscClose.bind(this));
+    this._element.removeEventListener('mousedown', this._handleClickClose.bind(this));
   }
 
   _handleEscClose(evt) {
