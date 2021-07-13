@@ -1,4 +1,4 @@
-import { profile, popupPersonInfoName, popupPersonInfoRole } from '../utils/constants.js';
+import { profile } from '../utils/constants.js';
 
 export default class UserInfo {
   constructor({ nameSelector, roleSelector }) {
@@ -8,13 +8,13 @@ export default class UserInfo {
 
   getUserInfo() {
     return {
-      name: profile.querySelector(this._nameSelector).textContent,
+      fullname: profile.querySelector(this._nameSelector).textContent,
       role: profile.querySelector(this._roleSelector).textContent
     }
   }
 
   setUserInfo(info) {
-    popupPersonInfoName.value = info.name;
-    popupPersonInfoRole.value = info.role;
+    profile.querySelector(this._nameSelector).textContent = info.fullname;
+    profile.querySelector(this._roleSelector).textContent = info.role;
   }
 }

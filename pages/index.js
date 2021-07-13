@@ -202,7 +202,9 @@ import {
   profileRole,
   nameSelector,
   roleSelector,
-  editPopupSelector
+  editPopupSelector,
+  popupPersonInfoName,
+  popupPersonInfoRole
 } from '../utils/constants.js';
 
 const addFormValidate = new FormValidator(objSelectors, popupEditFormAdd);
@@ -220,16 +222,21 @@ editFormValidate.enableValidation();
 
 const infoForm = new PopupWithForm(
   (inputData) => {
-    profileFullName.textContent = inputData.fullname;
-    profileRole.textContent = inputData.role;
+    userInfo.setUserInfo(inputData);
     infoForm.close();
   },
-  editPopupSelector
+  editPopupSelector,
+  () => {
+    editFormValidate.clearForm();
+  }
 );
 
+infoForm.setEventListeners();
+
 popupOpenButtonEdit.addEventListener('click', () => {
-  userInfo.setUserInfo(userInfo.getUserInfo());
-  infoForm.setEventListeners();
+  const currentPersonInfo = userInfo.getUserInfo();
+  popupPersonInfoName.value = currentPersonInfo.fullname;
+  popupPersonInfoRole.value = currentPersonInfo.role;
   infoForm.open();
 });
 
@@ -237,3 +244,6 @@ popupCloseButtonEdit.addEventListener('click', () => {
   infoForm.close();
 });
 //Конец реализация интерактивности формы редактирования личной информации пользователя
+
+//Начало реализации интерактивности формы добавления карточки с фотографией
+
