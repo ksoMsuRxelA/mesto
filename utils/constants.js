@@ -35,6 +35,10 @@ export const profileRole = profile.querySelector('.profile__role'); //p tag
 export const nameSelector = '.profile__full-name';
 export const roleSelector = '.profile__role';
 export const editPopupSelector = '.popup_type_edit';
+export const cardTemplateSelector = '#cardTemplate';
+export const imagePopupSelector = '.popup_type_image';
+export const addPopupSelector = '.popup_type_new-card';
+export const cardListSelector = '.elements';
 
 export const objSelectors = {
   formSelector: '.popup__edit-form',
@@ -45,7 +49,7 @@ export const objSelectors = {
   errorClass: 'popup__error-element_visible'
 };
 
-const initialCards = [
+export const initialCards = [
   {
     name: 'Архыз',
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'

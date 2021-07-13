@@ -1,5 +1,5 @@
 import Popup from './Popup.js';
-import FormValidator from './FormValidator.js';
+// import FormValidator from './FormValidator.js';
 import { profileFullName, profileRole } from '../utils/constants.js';
 
 export default class PopupWithForm extends Popup {
