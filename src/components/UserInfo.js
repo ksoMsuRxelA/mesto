@@ -1,20 +1,18 @@
-import { profile } from '../utils/constants.js';
-
 export default class UserInfo {
   constructor({ nameSelector, roleSelector }) {
-    this._nameSelector = nameSelector;
-    this._roleSelector = roleSelector;
+    this._nameElement = document.querySelector(nameSelector);
+    this._roleElement = document.querySelector(roleSelector);
   }
 
   getUserInfo() {
     return {
-      fullname: profile.querySelector(this._nameSelector).textContent,
-      role: profile.querySelector(this._roleSelector).textContent
+      fullname: this._nameElement.textContent,
+      role: this._roleElement.textContent
     }
   }
 
   setUserInfo(info) {
-    profile.querySelector(this._nameSelector).textContent = info.fullname;
-    profile.querySelector(this._roleSelector).textContent = info.role;
+    this._nameElement.textContent = info.fullname;
+    this._roleElement.textContent = info.role;
   }
 }

@@ -29,9 +29,27 @@ import {
   cardListSelector
 } from '../utils/constants.js';
 
-import {
-  createCard
-} from '../utils/utils.js';
+function createCard(item) { 
+  const card = new Card(
+    item,
+    cardTemplateSelector,
+    () => {
+      popupWithImage.setEventListeners();
+      popupWithImage.open(item.link, item.name, item.name);
+    }
+  );
+
+  const cardElement = card.generateCard();
+  cardList.addItem(cardElement);
+}
+
+//Начало реализация интерактивности изображений карточек
+
+const popupWithImage = new PopupWithImage(imagePopupSelector);
+
+popupWithImage.setEventListeners();
+
+//Конец реализация интерактивности изображений карточек
 
 const userInfo = new UserInfo({
   nameSelector: nameSelector,
@@ -63,9 +81,6 @@ popupOpenButtonEdit.addEventListener('click', () => {
   infoForm.open();
 });
 
-popupCloseButtonEdit.addEventListener('click', () => {
-  infoForm.close();
-});
 //Конец реализация интерактивности формы редактирования личной информации пользователя
 
 //Начало реализации размещения начальных карточек на странице
