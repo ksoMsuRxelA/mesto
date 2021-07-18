@@ -34,7 +34,6 @@ function createCard(item) {
     item,
     cardTemplateSelector,
     () => {
-      popupWithImage.setEventListeners();
       popupWithImage.open(item.link, item.name, item.name);
     }
   );
@@ -116,7 +115,4 @@ popupOpenButtonAdd.addEventListener('click', () => {
   addForm.open();
 });
 
-popupCloseButtonAdd.addEventListener('click', () => {
-  addForm.close();
-});
 //Конец реализации интерактивности формы добавления карточки с фотографией
