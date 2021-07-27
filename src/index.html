@@ -71,10 +71,23 @@
     </figure>
   </section>
 
+  <section class="popup popup_type_delete-card">
+    <div class="popup__container popup__container_type_delete">
+      <form class="popup__edit-form" name="delete" novalidate>
+        <h2 class="popup__title">Вы уверены?</h2>
+        <fieldset class="popup__info">
+          <button type="sumbit" aria-label="Удалить карточку с фотографией" class="popup__save-button popup__save-button_type_delete">Да</button>
+        </fieldset>
+      </form>
+      <button type="button" aria-label="Закрыть всплывающее окно" class="popup__close-button"></button>
+    </div>
+  </section>
+
   <template id="cardTemplate">
     <div class="element">
       <img src="#" alt="some" class="element__image">
       <h2 class="element__title"></h2>
+      <div class="element__like-counter"></div>
       <button type="button" aria-label="Кнопка Нравится" class="element__like-button"></button>
       <button type="button" aria-label="Кнопка удаления карточки" class="element__delete-button"></button>
     </div>
