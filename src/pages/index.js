@@ -26,7 +26,8 @@ import {
   popupOpenButtonAdd,
   popupCloseButtonAdd,
   initialCards,
-  cardListSelector
+  cardListSelector,
+  popupAvatarForm
 } from '../utils/constants.js';
 
 function createCard(item) { 
@@ -116,3 +117,8 @@ popupOpenButtonAdd.addEventListener('click', () => {
 });
 
 //Конец реализации интерактивности формы добавления карточки с фотографией
+
+//Начало кода девятого спринта//
+const avatarFormValidate = new FormValidator(objSelectors, popupAvatarForm);
+
+avatarFormValidate.enableValidation();

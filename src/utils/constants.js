@@ -40,6 +40,11 @@ export const imagePopupSelector = '.popup_type_image';
 export const addPopupSelector = '.popup_type_new-card';
 export const cardListSelector = '.elements';
 
+/*---*/
+export const popupAvatar = page.querySelector('.popup_type_avatar');
+export const popupAvatarForm = popupAvatar.querySelector('.popup__edit-form');
+/*---*/
+
 export const objSelectors = {
   formSelector: '.popup__edit-form',
   inputSelector: '.popup__input',
