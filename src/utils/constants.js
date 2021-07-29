@@ -30,6 +30,7 @@ export const popupOpenButtonEdit = profile.querySelector('.profile__edit-button'
 export const popupOpenButtonAdd = profile.querySelector('.profile__add-button');
 export const profileFullName = profile.querySelector('.profile__full-name'); //h1 tag
 export const profileRole = profile.querySelector('.profile__role'); //p tag
+export const profileAvatarElement = profile.querySelector('.profile__avatar');
 
 /********************************/
 export const nameSelector = '.profile__full-name';

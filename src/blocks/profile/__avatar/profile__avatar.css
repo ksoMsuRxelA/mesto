@@ -5,8 +5,9 @@
   object-fit: cover;
   object-position: center;
   position: relative;
-  background-image: url('../../../images/profile-image-kusto.png');
-
+  background-size: cover;
+  background-position: center;
+  backgournd-repeat: no-repeat;
 }
 
 .profile__avatar::before {

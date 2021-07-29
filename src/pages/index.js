@@ -6,6 +6,7 @@ import UserInfo from '../components/UserInfo.js';
 import Section from '../components/Section.js';
 import Card from '../components/Card.js';
 import FormValidator from '../components/FormValidator.js';
+import Api from '../components/Api.js';
 
 import { 
   objSelectors, 
@@ -15,11 +16,12 @@ import {
   popupOpenButtonEdit,
   profileFullName,
   profileRole,
+  profileAvatarElement,
   nameSelector,
   roleSelector,
   editPopupSelector,
-  popupPersonInfoName,
-  popupPersonInfoRole,
+  popupPersonInfoName, 
+  popupPersonInfoRole, 
   cardTemplateSelector,
   imagePopupSelector,
   addPopupSelector,
@@ -27,8 +29,45 @@ import {
   popupCloseButtonAdd,
   initialCards,
   cardListSelector,
-  popupAvatarForm
+  popupAvatarForm,
+  profileAvatar,
+  profile
 } from '../utils/constants.js';
+
+const api = new Api({
+  baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-26',
+  headers: {
+    authorization: 'c1029b6e-f14f-48d8-a0b9-3627c8971067',
+    'Content-Type': 'application/json'
+  }
+});
+
+api.getUserInfo()
+  .then((res) => {
+    if(res.ok) {
+      return res.json();
+    }
+    return Promise.reject(`Ошибка запроса: ${res.status}`);
+  })
+  .then((data) => {
+    profileFullName.textContent = data.name;
+    profileRole.textContent = data.about;
+    profileAvatarElement.style.backgroundImage = `url(${data.avatar})`;
+  })
+  .catch((err) => {
+    console.log(`Ошибка запроса: ${err}`);
+  });
+
+// api.getInitialCards()
+//   .then((res) => {
+//     if(res.ok) {
+//       return res.json();
+//     }
+//     return Promise.reject(`Ошибка запроса: ${res.status}`);
+//   })
+//   .then((data) => {
+
+//   })
 
 function createCard(item) { 
   const card = new Card(
@@ -36,6 +75,13 @@ function createCard(item) {
     cardTemplateSelector,
     () => {
       popupWithImage.open(item.link, item.name, item.name);
+    },
+    (evt) => {
+      evt.target.classList.toggle('element__like-button_active');
+    },
+    (evt) => {
+      const delParent = evt.target.closest('.element');
+      delParent.remove();
     }
   );
 
@@ -122,3 +168,6 @@ popupOpenButtonAdd.addEventListener('click', () => {
 const avatarFormValidate = new FormValidator(objSelectors, popupAvatarForm);
 
 avatarFormValidate.enableValidation();
+
+
+
