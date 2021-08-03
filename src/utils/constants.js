@@ -37,13 +37,17 @@ export const nameSelector = '.profile__full-name';
 export const roleSelector = '.profile__role';
 export const editPopupSelector = '.popup_type_edit';
 export const cardTemplateSelector = '#cardTemplate';
+export const cardTemplateSelectorUser = '#cardTemplateUser';
 export const imagePopupSelector = '.popup_type_image';
 export const addPopupSelector = '.popup_type_new-card';
 export const cardListSelector = '.elements';
+export const deletePopupSelector = '.popup_type_delete-card';
 
 /*---*/
 export const popupAvatar = page.querySelector('.popup_type_avatar');
 export const popupAvatarForm = popupAvatar.querySelector('.popup__edit-form');
+export const avatarPopupSelector = '.popup_type_avatar';
+export const cardLikeCounter = '.element__like-counter';
 /*---*/
 
 export const objSelectors = {
