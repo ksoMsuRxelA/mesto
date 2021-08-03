@@ -44,7 +44,7 @@
 
 .profile__avatar:hover::before {
   visibility: visible;
-  opacity: 1;
+  opacity: .8;
   cursor: pointer;
 }
 
