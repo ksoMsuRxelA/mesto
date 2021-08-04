@@ -35,6 +35,7 @@ export const profileAvatarElement = profile.querySelector('.profile__avatar');
 /********************************/
 export const nameSelector = '.profile__full-name';
 export const roleSelector = '.profile__role';
+export const avatarSelector = '.profile__avatar';
 export const editPopupSelector = '.popup_type_edit';
 export const cardTemplateSelector = '#cardTemplate';
 export const cardTemplateSelectorUser = '#cardTemplateUser';

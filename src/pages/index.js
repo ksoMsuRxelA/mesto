@@ -20,6 +20,7 @@ import {
   profileAvatarElement,
   nameSelector,
   roleSelector,
+  avatarSelector,
   editPopupSelector,
   popupPersonInfoName, 
   popupPersonInfoRole, 
@@ -45,36 +46,25 @@ const api = new Api({
   }
 });
 
+const userInfo = new UserInfo({
+  nameSelector: nameSelector,
+  roleSelector: roleSelector,
+  avatarSelector: avatarSelector,
+  userId: null
+});
+
 api.getUserInfo()
-  .then((res) => {
-    if(res.ok) {
-      return res.json();
-    }
-    return Promise.reject(`Ошибка запроса: ${res.status}`);
-  })
   .then((data) => {
-    profileFullName.textContent = data.name;
-    profileRole.textContent = data.about;
-    profileAvatarElement.style.backgroundImage = `url(${data.avatar})`;
+    userInfo.setUserInfo(data);
     return Promise.resolve(data._id);
   })
   .then((userId) => {
     function getCurrentCardList() {
       api.getInitialCards()
-        .then((res) => {
-          if(res.ok) {
-            return res.json();
-          }
-          return Promise.reject(`Ошибка запроса: ${res.status}`);
-        })
         .then((cardsData) => {
-          const initialCardList = new Section({
-            items: cardsData,
-            renderer: (item) => {
-              createCard(item);
-            }
-          }, cardListSelector);
-          initialCardList.renderItems();
+          cardsData.forEach((currentCard) => { //здесь я решил не менять логику метода renderItems, а просто пройтись по массиву и добавить с помощью единственного (теперь уже) объекта класса Section, который задан внутри createCard.
+            createCard(currentCard);
+          })
         })
         .catch((err) => {
           console.log(`Ошибка: ${err}`);
@@ -101,12 +91,6 @@ api.getUserInfo()
         () => { //handle function to like icon any card
           if(!card.likeStatus()) {
             api.putLike(item._id)
-              .then((res) => {
-                if(res.ok) {
-                  return res.json();
-                }
-                return Promise.reject(`Ошибка при постановке лайка: ${res.status}`);
-              })
               .then((likeResponse) => {
                 card.setLikeCounter(likeResponse.likes);
                 card.setLike();
@@ -116,12 +100,6 @@ api.getUserInfo()
               })
           } else {
             api.deleteLike(item._id)
-              .then((res) => {
-                if(res.ok) {
-                  return res.json();
-                }
-                return Promise.reject(`Ошибка при снятии лайка: ${res.status}`)
-              })
               .then((unlikeResponse) => {
                 card.setLikeCounter(unlikeResponse.likes);
                 card.setLike();
@@ -149,10 +127,9 @@ api.getUserInfo()
         },
         userId
       );
-      // console.log(card);
     
       const cardElement = card.generateCard();
-      cardList.addItem(cardElement);
+      cardList.addItem(cardElement); //вот тот самый единственный объект класса Section
     }
     
     //Начало реализация интерактивности изображений карточек
@@ -163,12 +140,6 @@ api.getUserInfo()
     
     //Конец реализация интерактивности изображений карточек
     
-    const userInfo = new UserInfo({
-      nameSelector: nameSelector,
-      roleSelector: roleSelector
-    });
-    
-    
     //Начало реализация интерактивности формы редактирования личной информации пользователя
     const editFormValidate = new FormValidator(objSelectors, popupEditFormPerson);
     
@@ -177,12 +148,6 @@ api.getUserInfo()
     const infoForm = new PopupWithForm(
       (item) => { //##
         api.patchUserInfo(item)
-          .then((res) => {
-            if(res.ok) {
-              return res.json();
-            }
-            return Promise.reject(`Ошибка запроса: ${res.status}`);
-          })
           .then((newUserInfo) => {
             userInfo.setUserInfo(newUserInfo);
             infoForm.close();
@@ -225,12 +190,6 @@ api.getUserInfo()
     const addForm = new PopupWithForm(
       (item) => {
         api.postNewCard(item)
-          .then((res) => {
-            if(res.ok) {
-              return res.json();
-            }
-            return Promise.reject(`Ошибка запроса: ${res.status}`);
-          })
           .then((newCardData) => {
             createCard(newCardData);
             addForm.close();
@@ -261,14 +220,8 @@ api.getUserInfo()
     const avatarForm = new PopupWithForm(
       (item) => {
         api.patchAvatar(item)
-          .then((res) => {
-            if(res.ok) {
-              return res.json();
-            }
-            return Promise.reject(`Ошибка запроса: ${res.status}`);
-          })
           .then((newUserAvatar) => {
-            profileAvatarElement.style.backgroundImage = `url(${newUserAvatar.avatar})`;
+            userInfo.setUserInfo(newUserAvatar);
             avatarForm.close();
           })
           .catch((err) => {
